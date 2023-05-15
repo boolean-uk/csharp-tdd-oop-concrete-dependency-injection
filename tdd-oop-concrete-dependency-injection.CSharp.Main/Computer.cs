@@ -13,9 +13,14 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         public Computer(PowerSupply powerSupply) {
             this.powerSupply = powerSupply;
         }
+        public Computer(PowerSupply powerSupply,List<Game> list)
+        {
+            this.powerSupply = powerSupply;
+            installedGames = list;
+        }
 
-        public void turnOn() {
-            PowerSupply psu = new PowerSupply();
+        public void turnOn(PowerSupply psu) {
+            //PowerSupply psu = new PowerSupply();
             psu.turnOn();
         }
 
@@ -33,5 +38,16 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 
             return "Game not installed";
         }
+
+        /*
+        public void updateList(List<Game> list)
+        {
+            foreach(Game g in installedGames) {
+                installedGames.Remove(g);
+            }
+            installedGames.AddRange(list);
+
+        }
+        */
     }
 }
