@@ -40,8 +40,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             Game dragonsDogma = new Game("Dragon's Dogma: Dark Arisen");
             myPc.installGame(duckGame);
             myPc.installGame(dragonsDogma);
-            Assert.AreEqual("Playing Duck Game", myPc.playGame(duckGame.name));
-            Assert.AreEqual("Playing Dragon's Dogma: Dark Arisen", myPc.playGame(dragonsDogma.name));
+            Assert.AreEqual("Playing Duck Game", myPc.playGame(duckGame.Name));
+            Assert.AreEqual("Playing Dragon's Dogma: Dark Arisen", myPc.playGame(dragonsDogma.Name));
             Assert.AreEqual("Game not installed", myPc.playGame("Morrowind"));
         }
 

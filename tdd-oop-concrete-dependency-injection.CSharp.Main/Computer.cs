@@ -8,8 +8,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Computer 
     {   
-        private List<Game> installedGames;
-        private PowerSupply powerSupply;
+        private readonly List<Game> installedGames;
+        private readonly PowerSupply powerSupply;
 
         public Computer(PowerSupply powerSupply, List <Game> installedGames)
         {
@@ -30,7 +30,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         public String playGame(string name) {
             foreach (Game g in installedGames) 
             {
-                if (g.name.Equals(name)) 
+                if (g.Name.Equals(name)) 
                 {
                     return g.start();
                 }
