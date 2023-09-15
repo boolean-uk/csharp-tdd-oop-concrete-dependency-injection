@@ -9,7 +9,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void shouldTurnOn()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, new List<Game>());
             myPc.turnOn();
 
             Assert.IsTrue(myPsu.isOn);
@@ -19,19 +19,19 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void shouldInstallGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
-
+            List<Game> installedGames = new List<Game>();
+            Computer myPc = new Computer(myPsu, installedGames);
             myPc.installGame("Final Fantasy XI");
-
-            Assert.AreEqual(1, myPc.installedGames.Count());
-            Assert.AreEqual("Final Fantasy XI", myPc.installedGames[0].name);
+            Assert.AreEqual(1, installedGames.Count());
+            Assert.AreEqual("Final Fantasy XI", installedGames[0].name);
         }
 
         [Test]
         public void shouldPlayGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            List<Game> installedGames = new List<Game>();
+            Computer myPc = new Computer(myPsu, installedGames);
 
             myPc.installGame("Duck Game");
             myPc.installGame("Dragon's Dogma: Dark Arisen");
@@ -46,15 +46,16 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             List<Game> preInstalled = new List<Game>();
+ 
             preInstalled.Add(new Game("Dwarf Fortress"));
             preInstalled.Add(new Game("Baldur's Gate"));
 
 
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, preInstalled);
 
-            Assert.AreEqual(2, myPc.installedGames.Count());
-            Assert.AreEqual("Dwarf Fortress", myPc.installedGames[0].name);
-            Assert.AreEqual("Baldur's Gate", myPc.installedGames[1].name);
+            Assert.AreEqual(2, preInstalled.Count());
+            Assert.AreEqual("Dwarf Fortress", preInstalled[0].name);
+            Assert.AreEqual("Baldur's Gate", preInstalled[1].name);
         }
     }
 }
