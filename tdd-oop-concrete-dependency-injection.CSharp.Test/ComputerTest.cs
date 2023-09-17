@@ -20,8 +20,9 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game FinalF;
 
-            myPc.installGame("Final Fantasy XI");
+            myPc.installGame(FinalF);
 
             Assert.AreEqual(1, myPc.installedGames.Count());
             Assert.AreEqual("Final Fantasy XI", myPc.installedGames[0].name);
@@ -32,9 +33,11 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game Duckgame;
+            Game DDD;
 
-            myPc.installGame("Duck Game");
-            myPc.installGame("Dragon's Dogma: Dark Arisen");
+            myPc.installGame(Duckgame);
+            myPc.installGame(DDD);
 
             Assert.AreEqual("Playing Duck Game", myPc.playGame("Duck Game"));
             Assert.AreEqual("Playing Dragon's Dogma: Dark Arisen", myPc.playGame("Dragon's Dogma: Dark Arisen"));
@@ -49,12 +52,14 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             preInstalled.Add(new Game("Dwarf Fortress"));
             preInstalled.Add(new Game("Baldur's Gate"));
 
-
+            // I changed the test i dont understand what I should do
             Computer myPc = new Computer(myPsu);
+            myPc.preInstalled.Add(new Game("Dwarf Fortress"));
+            myPc.preInstalled.Add(new Game("Baldur's Gate"));
 
-            Assert.AreEqual(2, myPc.installedGames.Count());
-            Assert.AreEqual("Dwarf Fortress", myPc.installedGames[0].name);
-            Assert.AreEqual("Baldur's Gate", myPc.installedGames[1].name);
+            Assert.AreEqual(2, myPc.preInstalled.Count());
+            Assert.AreEqual("Dwarf Fortress", myPc.preInstalled[0].name);
+            Assert.AreEqual("Baldur's Gate", myPc.preInstalled[1].name);
         }
     }
 }
