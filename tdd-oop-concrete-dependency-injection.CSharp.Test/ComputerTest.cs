@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 {
     [TestFixture]
-    public class ComputerTests
+    class ComputerTest
     {
         [Test]
         public void ShouldTurnOn()
