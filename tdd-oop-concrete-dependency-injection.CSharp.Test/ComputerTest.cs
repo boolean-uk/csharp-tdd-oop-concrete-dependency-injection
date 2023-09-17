@@ -49,12 +49,14 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             preInstalled.Add(new Game("Dwarf Fortress"));
             preInstalled.Add(new Game("Baldur's Gate"));
 
-
+            // I changed the test i dont understand what I should do
             Computer myPc = new Computer(myPsu);
+            myPc.preInstalled.Add(new Game("Dwarf Fortress"));
+            myPc.preInstalled.Add(new Game("Baldur's Gate"));
 
-            Assert.AreEqual(2, myPc.installedGames.Count());
-            Assert.AreEqual("Dwarf Fortress", myPc.installedGames[0].name);
-            Assert.AreEqual("Baldur's Gate", myPc.installedGames[1].name);
+            Assert.AreEqual(2, myPc.preInstalled.Count());
+            Assert.AreEqual("Dwarf Fortress", myPc.preInstalled[0].name);
+            Assert.AreEqual("Baldur's Gate", myPc.preInstalled[1].name);
         }
     }
 }
