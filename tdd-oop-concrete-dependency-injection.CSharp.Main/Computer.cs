@@ -24,15 +24,13 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
+        public void installGame(Game game) {
             this.installedGames.Add(game);
         }
 
         // added this because Im confused with what I should do for the last test
-        public void preInstallGame(string name)
+        public void preInstallGame(Game game)
         {
-            Game game = new Game(name);
             this.preInstalled.Add(game);
         }
 
