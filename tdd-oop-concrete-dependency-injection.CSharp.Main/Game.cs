@@ -10,8 +10,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
     {
         public string name;
 
-        public Game(string name) {
-           
+        public Game(string Name) {
+            name = Name;
         }
 
         public String start() {
