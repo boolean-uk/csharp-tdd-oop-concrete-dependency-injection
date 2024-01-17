@@ -23,8 +23,16 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 
             myPc.installGame("Final Fantasy XI");
 
-            Assert.That(myPc.installedGames.Count(), Is.EqualTo(1));
-            Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].name));
+            int timesFFXInstalled = 0;
+            for (int i = 0; i < myPc.installedGames.Count; i++)
+            {
+                if (myPc.installedGames[i].name == "Final Fantasy XI")
+                {
+                    timesFFXInstalled += 1;
+                }
+            }
+
+            Assert.That(timesFFXInstalled, Is.EqualTo(1));
         }
 
         [Test]
@@ -50,7 +58,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             preInstalled.Add(new Game("Baldur's Gate"));
 
 
-            Computer myPc = new Computer(myPsu, preInstalled);
+            Computer myPc = new Computer(myPsu);
 
             Assert.That(myPc.installedGames.Count(), Is.EqualTo(2));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));
