@@ -12,6 +12,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 
         public Game(string name) {
            
+            this.name = name;
         }
 
         public String start() {
