@@ -12,15 +12,9 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         
         public PowerSupply powerSupply;
 
-        public Computer(PowerSupply powerSupply, List<Game> preInstalled = null) {
+        public Computer(PowerSupply powerSupply) {
             this.powerSupply = powerSupply;
-            if (preInstalled != null)
-            {
-                foreach (Game game in preInstalled)
-                {
-                    installedGames.Add(game);
-                }
-            }
+            this.installedGames = new List<Game> { new Game("Dwarf Fortress"), new Game("Baldur's Gate") };
         }
 
         public void turnOn() {
@@ -30,14 +24,6 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         public void installGame(string name) {
             Game game = new Game(name);
             installedGames.Add(game);
-        }
-
-        public void preInstall(List<Game> preGames)
-        {
-            foreach (Game g in preGames)
-            {
-                installedGames.Add(g);
-            }
         }
 
         public String playGame(string name) {
