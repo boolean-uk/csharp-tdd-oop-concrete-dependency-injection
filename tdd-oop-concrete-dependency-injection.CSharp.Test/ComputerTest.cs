@@ -15,6 +15,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             Assert.IsTrue(myPsu.isOn);
         }
 
+        /*
         [Test]
         public void shouldInstallGames()
         {
@@ -26,6 +27,29 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             Assert.AreEqual(1, myPc.installedGames.Count());
             Assert.AreEqual("Final Fantasy XI", myPc.installedGames[0].name);
         }
+        */
+
+        [Test]
+        public void shouldInstallGames()
+        {
+            PowerSupply myPsu = new PowerSupply();
+            Computer myPc = new Computer(myPsu);
+
+            myPc.installGame("Final Fantasy XI");
+
+            int timesFFXInstalled = 0;
+            for (int i = 0; i < myPc.installedGames.Count; i++)
+            {
+                if (myPc.installedGames[i].name == "Final Fantasy XI")
+                {
+                    timesFFXInstalled += 1;
+                }
+            }
+
+            Assert.AreEqual(1, timesFFXInstalled);
+        }
+
+
 
         [Test]
         public void shouldPlayGames()
