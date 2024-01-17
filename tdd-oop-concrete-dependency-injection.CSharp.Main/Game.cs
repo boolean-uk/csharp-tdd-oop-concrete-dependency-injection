@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Game
-    { 
-        public string Name {  get; private set; }
+    {
+        public string name;
 
         public Game(string name) {
-            this.Name = name;
+            this.name = name;
         }
 
         public string GetGameName()
         {
-            return Name;
+            return name;
         }
 
         public String start() {
-            return "Playing " + this.Name;
+            return "Playing " + this.name;
         }
     }
 }
