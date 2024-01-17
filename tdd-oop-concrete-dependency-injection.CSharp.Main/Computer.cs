@@ -15,10 +15,15 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         public Computer(PowerSupply powerSupply) {
             this.powerSupply = powerSupply;
         }
+        public Computer(PowerSupply powerSupply, List<Game> preInstalledGames)
+        {
+            this.powerSupply = powerSupply;
+            this.installedGames.AddRange(preInstalledGames);
+        }
 
         public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+            //PowerSupply psu = new PowerSupply();
+            powerSupply.turnOn();
         }
 
         public void installGame(string name) {
