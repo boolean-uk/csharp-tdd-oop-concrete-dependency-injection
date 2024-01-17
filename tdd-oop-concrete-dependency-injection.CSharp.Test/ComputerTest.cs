@@ -5,10 +5,14 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 {
     class ComputerTest
     {
+        PowerSupply myPsu;
+        public ComputerTest()
+        {
+            myPsu = new PowerSupply();
+        }
         [Test]
         public void shouldTurnOn()
         {
-            PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
             myPc.turnOn();
 
@@ -18,10 +22,10 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         [Test]
         public void shouldInstallGames()
         {
-            PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game game = new Game("Final Fantasy XI");
 
-            myPc.installGame("Final Fantasy XI");
+            myPc.installGame(game);
 
             Assert.AreEqual(1, myPc.installedGames.Count());
             Assert.AreEqual("Final Fantasy XI", myPc.installedGames[0].name);
@@ -30,21 +34,21 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         [Test]
         public void shouldPlayGames()
         {
-            PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game DuckGame = new Game("Duck Game");
+            Game DDDA = new Game("Dragon's Dogma: Dark Arisen");
 
-            myPc.installGame("Duck Game");
-            myPc.installGame("Dragon's Dogma: Dark Arisen");
+            myPc.installGame(DuckGame);
+            myPc.installGame(DDDA);
 
-            Assert.AreEqual("Playing Duck Game", myPc.playGame("Duck Game"));
-            Assert.AreEqual("Playing Dragon's Dogma: Dark Arisen", myPc.playGame("Dragon's Dogma: Dark Arisen"));
-            Assert.AreEqual("Game not installed", myPc.playGame("Morrowind"));
+            Assert.AreEqual("Playing Duck Game", myPc.playGame(DuckGame));
+            Assert.AreEqual("Playing Dragon's Dogma: Dark Arisen", myPc.playGame(DDDA));
+            Assert.AreEqual("Game not installed", myPc.playGame(new Game("Morrowind")));
         }
         
         [Test]
         public void canPreinstallGames()
         {
-            PowerSupply myPsu = new PowerSupply();
             List<Game> preInstalled = new List<Game>();
             preInstalled.Add(new Game("Dwarf Fortress"));
             preInstalled.Add(new Game("Baldur's Gate"));
