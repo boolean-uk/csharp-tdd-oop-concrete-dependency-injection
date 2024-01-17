@@ -12,11 +12,12 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
  
         public PowerSupply powerSupply;
 
-        public Computer(PowerSupply powerSupply) 
+        public Computer(PowerSupply powerSupply, List<Game> games) 
         {
              this.powerSupply = powerSupply;
-             this.installedGames.Add(new Game("Dwarf Fortress"));
-             this.installedGames.Add(new Game("Baldur's Gate"));
+            //this.installedGames.Add(new Game("Dwarf Fortress"));
+            //this.installedGames.Add(new Game("Baldur's Gate"));
+            this.installedGames.AddRange(games);
         }
         
 

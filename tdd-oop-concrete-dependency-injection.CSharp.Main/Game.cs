@@ -14,7 +14,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
            this.name = name;
         }
 
-        public String start() {
+        public String start() 
+        {
             return "Playing " + this.name;
         }
     }
