@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
-    public class Game 
+    public class Game
     {
         public string name;
 
         public Game(string name) {
-           
+            this.name = name;
+        }
+
+        public string GetGameName()
+        {
+            return name;
         }
 
         public String start() {

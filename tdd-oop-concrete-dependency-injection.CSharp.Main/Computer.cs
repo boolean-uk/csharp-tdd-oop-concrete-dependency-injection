@@ -8,21 +8,21 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Computer 
     {
-        public List<Game> installedGames = new List<Game>();
+       public List<Game> installedGames = new List<Game>();
         
-        public PowerSupply powerSupply;
+       private PowerSupply powerSupply;
 
         public Computer(PowerSupply powerSupply) {
             this.powerSupply = powerSupply;
+            installedGames.Add(new Game("Dwarf Fortress"));
+            installedGames.Add(new Game("Baldur's Gate"));
         }
 
         public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+            powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
+        public void installGame(Game game) {
             this.installedGames.Add(game);
         }
 
@@ -34,6 +34,11 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             }
 
             return "Game not installed";
+        }
+
+        public List<Game> getInstalledGames()
+        {
+            return installedGames;
         }
     }
 }
