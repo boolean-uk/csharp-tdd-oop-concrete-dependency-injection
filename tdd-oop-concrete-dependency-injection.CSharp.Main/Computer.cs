@@ -8,13 +8,13 @@ public class Computer
 
     public Computer(PowerSupply powerSupply) {
         this.powerSupply = powerSupply;
-        this.installedGames = new List<Game>();
+        installedGames = new List<Game>();
     }
 
     public Computer(PowerSupply powerSupply, List<Game> preInstalledGames)
     {
         this.powerSupply = powerSupply;
-        this.installedGames = preInstalledGames;
+        installedGames = preInstalledGames;
     }
 
     public void turnOn() {
@@ -22,11 +22,11 @@ public class Computer
     }
 
     public void installGame(Game game) {
-        this.installedGames.Add(game);
+        installedGames.Add(game);
     }
 
     public String playGame(string name) {
-        foreach (Game g in this.installedGames) {
+        foreach (Game g in installedGames) {
             if (g.name.Equals(name)) {
                 return g.start();
             }
