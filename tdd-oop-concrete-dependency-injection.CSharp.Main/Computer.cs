@@ -9,34 +9,43 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Computer 
     {
-        public List<ISoftware> installedPrograms { get { return new List<ISoftware>(installedPrograms); } set { new List<ISoftware>(); } }
-        
+        private List<ISoftware> _installedPrograms;
+
+        public List<ISoftware> InstalledPrograms
+        {
+            get { return _installedPrograms; }
+        }
+
         private PowerSupply _powerSupply;
 
         public Computer(PowerSupply powerSupply) {
             this._powerSupply = powerSupply;
-            
+            _installedPrograms = new List<ISoftware>();
+
+
         }
+
+
 
         public void turnOn() {
             _powerSupply.turnOn();
         }
 
         public void installSoftware(ISoftware program) {
-            this.installedPrograms.Add(program);
+            this._installedPrograms.Add(program);
             
         }
 
         public void preInstallSoftware(List<ISoftware> games) 
         {
-            foreach (Game game in games) 
+            foreach (ISoftware sw in games) 
             {
-                installedPrograms.Add(game);
+                installSoftware(sw);
             }
         }
 
         public String playGame(ISoftware program) {
-            ISoftware? targetProgram = this.installedPrograms.Where(g => g.Equals(program)).FirstOrDefault();
+            ISoftware? targetProgram = this._installedPrograms.Where(g => g.Equals(program)).FirstOrDefault();
             if (targetProgram != null) 
             {
                 return targetProgram.start();

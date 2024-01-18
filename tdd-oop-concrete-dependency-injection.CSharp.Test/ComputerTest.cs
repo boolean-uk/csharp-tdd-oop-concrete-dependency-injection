@@ -25,8 +25,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 
             myPc.installSoftware(FFXI);
 
-            Assert.That(1, Is.EqualTo(myPc.installedPrograms.Count()));
-            Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedPrograms[0].getName()));
+            Assert.That(1, Is.EqualTo(myPc.InstalledPrograms.Count()));
+            Assert.That("Final Fantasy XI", Is.EqualTo(myPc.InstalledPrograms[0].getName()));
         }
 
         [Test]
@@ -58,9 +58,9 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             Computer myPc = new Computer(myPsu);
             myPc.preInstallSoftware(preInstalled);
 
-            Assert.That(2, Is.EqualTo(myPc.installedPrograms.Count));
-            Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedPrograms[0].getName()));
-            Assert.That("Baldur's Gate", Is.EqualTo(myPc.installedPrograms[1].getName()));
+            Assert.That(2, Is.EqualTo(myPc.InstalledPrograms.Count));
+            Assert.That("Dwarf Fortress", Is.EqualTo(myPc.InstalledPrograms[0].getName()));
+            Assert.That("Baldur's Gate", Is.EqualTo(myPc.InstalledPrograms[1].getName()));
         }
     }
 }
