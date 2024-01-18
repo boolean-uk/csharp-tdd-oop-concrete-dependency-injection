@@ -25,7 +25,7 @@ public class Computer
         installedGames.Add(game);
     }
 
-    public String playGame(string name) {
+    public string playGame(string name) {
         foreach (Game g in installedGames) {
             if (g.name.Equals(name)) {
                 return g.start();
