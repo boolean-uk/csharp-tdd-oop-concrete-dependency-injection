@@ -16,19 +16,24 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             this.powerSupply = powerSupply;
         }
 
-        public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+        public Computer(PowerSupply psu, List<Game> preInstalledGames)
+        {
+            this.powerSupply = psu;
+            this.installedGames = preInstalledGames;
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
+        public void turnOn()
+        { 
+            this.powerSupply.turnOn();
+        }
+
+        public void installGame(Game game) {
             this.installedGames.Add(game);
         }
 
-        public String playGame(string name) {
+        public String playGame(Game game) {
             foreach (Game g in this.installedGames) {
-                if (g.name.Equals(name)) {
+                if (g.name.Equals(game.name)) {
                     return g.start();
                 }
             }
