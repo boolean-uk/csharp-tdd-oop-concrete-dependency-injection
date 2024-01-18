@@ -16,17 +16,16 @@
             powerSupply.turnOn();
         }
 
-        public void installGame(string name)
+        public void installGame(Game game)
         {
-            Game game = new Game(name);
             this.installedGames.Add(game);
         }
 
-        public String playGame(string name)
+        public String playGame(Game game)
         {
             foreach (Game g in this.installedGames)
             {
-                if (g.name.Equals(name))
+                if (g == game)
                 {
                     return g.start();
                 }
