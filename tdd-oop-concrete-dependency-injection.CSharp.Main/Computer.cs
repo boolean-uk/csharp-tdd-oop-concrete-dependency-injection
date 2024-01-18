@@ -20,8 +20,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
+        public void installGame(Game game) {
             this.installedGames.Add(game);
         }
 
@@ -33,13 +32,12 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             }
         }
 
-        public String playGame(string name) {
-            foreach (Game g in this.installedGames) {
-                if (g.name.Equals(name)) {
-                    return g.start();
-                }
+        public String playGame(Game game) {
+            Game? gameToPlay = this.installedGames.Where(g => g.Equals(game)).FirstOrDefault();
+            if (gameToPlay != null) 
+            {
+                return gameToPlay.start();
             }
-
             return "Game not installed";
         }
     }

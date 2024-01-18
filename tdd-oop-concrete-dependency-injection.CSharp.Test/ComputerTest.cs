@@ -20,8 +20,9 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game FFXI = new Game("Final Fantasy XI");
 
-            myPc.installGame("Final Fantasy XI");
+            myPc.installGame(FFXI);
 
             Assert.That(1, Is.EqualTo(myPc.installedGames.Count()));
             Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].name));
@@ -32,13 +33,16 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game duckGame = new Game("Duck Game");
+            Game dragonsDogma = new Game("Dragon's Dogma: Dark Arisen");
+            Game morrowwind = new Game("Morrowwind");
 
-            myPc.installGame("Duck Game");
-            myPc.installGame("Dragon's Dogma: Dark Arisen");
+            myPc.installGame(duckGame);
+            myPc.installGame(dragonsDogma);
 
-            Assert.That("Playing Duck Game", Is.EqualTo(myPc.playGame("Duck Game")));
-            Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame("Dragon's Dogma: Dark Arisen")));
-            Assert.That("Game not installed", Is.EqualTo(myPc.playGame("Morrowind")));
+            Assert.That("Playing Duck Game", Is.EqualTo(myPc.playGame(duckGame)));
+            Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame(dragonsDogma)));
+            Assert.That("Game not installed", Is.EqualTo(myPc.playGame(morrowwind)));
         }
         
         [Test]
