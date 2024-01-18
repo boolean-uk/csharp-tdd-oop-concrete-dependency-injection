@@ -3,40 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Software;
 
 namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Computer 
     {
-        public List<Game> installedGames = new List<Game>();
+        public List<ISoftware> installedPrograms { get { return new List<ISoftware>(installedPrograms); } set { new List<ISoftware>(); } }
         
-        public PowerSupply powerSupply;
+        private PowerSupply _powerSupply;
 
         public Computer(PowerSupply powerSupply) {
-            this.powerSupply = powerSupply;
+            this._powerSupply = powerSupply;
+            
         }
 
         public void turnOn() {
-            powerSupply.turnOn();
+            _powerSupply.turnOn();
         }
 
-        public void installGame(Game game) {
-            this.installedGames.Add(game);
+        public void installSoftware(ISoftware program) {
+            this.installedPrograms.Add(program);
+            
         }
 
-        public void preInstallGames(List<Game> games) 
+        public void preInstallSoftware(List<ISoftware> games) 
         {
             foreach (Game game in games) 
             {
-                installedGames.Add(game);
+                installedPrograms.Add(game);
             }
         }
 
-        public String playGame(Game game) {
-            Game? gameToPlay = this.installedGames.Where(g => g.Equals(game)).FirstOrDefault();
-            if (gameToPlay != null) 
+        public String playGame(ISoftware program) {
+            ISoftware? targetProgram = this.installedPrograms.Where(g => g.Equals(program)).FirstOrDefault();
+            if (targetProgram != null) 
             {
-                return gameToPlay.start();
+                return targetProgram.start();
             }
             return "Game not installed";
         }

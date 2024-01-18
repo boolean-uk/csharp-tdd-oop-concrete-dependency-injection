@@ -1,5 +1,6 @@
 ﻿using tdd_oop_concrete_dependency_injection.CSharp.Main;
 using NUnit.Framework;
+using Software;
 
 namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 {
@@ -20,12 +21,12 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
-            Game FFXI = new Game("Final Fantasy XI");
+            ISoftware FFXI = new Game("Final Fantasy XI");
 
-            myPc.installGame(FFXI);
+            myPc.installSoftware(FFXI);
 
-            Assert.That(1, Is.EqualTo(myPc.installedGames.Count()));
-            Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].name));
+            Assert.That(1, Is.EqualTo(myPc.installedPrograms.Count()));
+            Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedPrograms[0].getName()));
         }
 
         [Test]
@@ -33,12 +34,12 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
-            Game duckGame = new Game("Duck Game");
-            Game dragonsDogma = new Game("Dragon's Dogma: Dark Arisen");
-            Game morrowwind = new Game("Morrowwind");
+            ISoftware duckGame = new Game("Duck Game");
+            ISoftware dragonsDogma = new Game("Dragon's Dogma: Dark Arisen");
+            ISoftware morrowwind = new Game("Morrowwind");
 
-            myPc.installGame(duckGame);
-            myPc.installGame(dragonsDogma);
+            myPc.installSoftware(duckGame);
+            myPc.installSoftware(dragonsDogma);
 
             Assert.That("Playing Duck Game", Is.EqualTo(myPc.playGame(duckGame)));
             Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame(dragonsDogma)));
@@ -49,17 +50,17 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void canPreinstallGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            List<Game> preInstalled = new List<Game>();
+            List<ISoftware> preInstalled = new List<ISoftware>();
             preInstalled.Add(new Game("Dwarf Fortress"));
             preInstalled.Add(new Game("Baldur's Gate"));
 
 
             Computer myPc = new Computer(myPsu);
-            myPc.preInstallGames(preInstalled);
+            myPc.preInstallSoftware(preInstalled);
 
-            Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
-            Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));
-            Assert.That("Baldur's Gate", Is.EqualTo(myPc.installedGames[1].name));
+            Assert.That(2, Is.EqualTo(myPc.installedPrograms.Count));
+            Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedPrograms[0].getName()));
+            Assert.That("Baldur's Gate", Is.EqualTo(myPc.installedPrograms[1].getName()));
         }
     }
 }
