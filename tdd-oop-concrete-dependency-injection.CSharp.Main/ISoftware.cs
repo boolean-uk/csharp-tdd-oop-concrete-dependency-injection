@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
-    public class Game 
+    public interface ISoftware
     {
-        public string name;
+        string getName();
 
-        public Game(string name) {
-           
-        }
-
-        public String start() {
-            return "Playing " + this.name;
-        }
+        string start();
     }
 }
