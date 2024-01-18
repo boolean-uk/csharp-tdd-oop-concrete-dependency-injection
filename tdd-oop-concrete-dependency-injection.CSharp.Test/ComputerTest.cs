@@ -1,5 +1,5 @@
-﻿using tdd_oop_concrete_dependency_injection.CSharp.Main;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using tdd_oop_concrete_dependency_injection.CSharp.Main;
 
 namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 {
@@ -40,7 +40,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame("Dragon's Dogma: Dark Arisen")));
             Assert.That("Game not installed", Is.EqualTo(myPc.playGame("Morrowind")));
         }
-        
+
         [Test]
         public void canPreinstallGames()
         {
@@ -51,6 +51,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 
 
             Computer myPc = new Computer(myPsu);
+            preInstalled.ForEach(x => myPc.installGame(x.name));
 
             Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));
