@@ -8,14 +8,16 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Game 
     {
-        public string name;
+        public string _name;
 
         public Game(string name) {
-           
+           _name = name;
         }
 
+        public string Name { get { return _name; } set { _name = value; } }
+
         public String start() {
-            return "Playing " + this.name;
+            return "Playing " + Name;
         }
     }
 }
