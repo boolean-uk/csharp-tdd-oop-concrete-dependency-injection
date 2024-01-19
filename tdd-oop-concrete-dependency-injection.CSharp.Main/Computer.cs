@@ -20,11 +20,6 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
-            installedGames.Add(game);
-        }
-
         public void installGame(Game game) {
             installedGames.Add(game);
         }
