@@ -17,8 +17,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         }
 
         public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+            powerSupply.turnOn();
         }
 
         public void installGame(string name) {
@@ -28,7 +27,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 
         public String playGame(string name) {
             foreach (Game g in this.installedGames) {
-                if (g.name.Equals(name)) {
+                if (g.Name.Equals(name)) {
                     return g.start();
                 }
             }
