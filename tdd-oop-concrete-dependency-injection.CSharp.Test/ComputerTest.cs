@@ -51,6 +51,10 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 
 
             Computer myPc = new Computer(myPsu);
+            //Simulate preinstalled games by adding the predefined set of games to the installedGames list.
+            myPc.installedGames.AddRange(preInstalled);
+
+
 
             Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));

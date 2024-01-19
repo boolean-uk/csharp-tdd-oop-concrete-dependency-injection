@@ -10,7 +10,9 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
     {
         public string name;
 
+        //Added initialization of name using the constructor paramter.
         public Game(string name) {
+            this.name = name;
            
         }
 

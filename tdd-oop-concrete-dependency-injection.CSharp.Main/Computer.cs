@@ -16,9 +16,27 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             this.powerSupply = powerSupply;
         }
 
-        public void turnOn() {
+        /*
+         Dependency Injection:
+
+         Original Code: This code creates a new instance of PowerSupply within the turnOn
+         method.It tightly couples the Computer class to a specific implementation of PowerSupply.
+         which means f.example. one class (in this case, Computer) is highly dependent on the details of
+         another class (PowerSupply). Tight coupling makes the classes more interconnected and less independent 
+         if you decide to change the way PowerSupply works or want to use a different 
+         class for power supply, you would need to modify the Computer class as well.
+
+         public void turnOn()
+         {
             PowerSupply psu = new PowerSupply();
             psu.turnOn();
+         } 
+         */
+        //using dependency injection, we pass an instance of 
+        //PowerSupply through the constructor. This allows different implementaions of 
+        //Powersupply to be used with the computer class.
+        public void turnOn() {
+            this.powerSupply.turnOn();
         }
 
         public void installGame(string name) {
