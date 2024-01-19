@@ -21,7 +21,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
 
-            myPc.installGame("Final Fantasy XI");
+            myPc.installGame(new Game("Final Fantasy XI"));
 
             Assert.That(1, Is.EqualTo(myPc.installedGames.Count()));
             Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].name));
@@ -32,13 +32,14 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game DuckGame = new Game("Duck Game");
+            Game DragonDogma = new Game("Dragon's Dogma: Dark Arisen");
+            myPc.installGame(DuckGame);
+            myPc.installGame(DragonDogma);
 
-            myPc.installGame("Duck Game");
-            myPc.installGame("Dragon's Dogma: Dark Arisen");
-
-            Assert.That("Playing Duck Game", Is.EqualTo(myPc.playGame("Duck Game")));
-            Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame("Dragon's Dogma: Dark Arisen")));
-            Assert.That("Game not installed", Is.EqualTo(myPc.playGame("Morrowind")));
+            Assert.That("Playing Duck Game", Is.EqualTo(myPc.playGame(DuckGame)));
+            Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame(DragonDogma)));
+            Assert.That("Game not installed", Is.EqualTo(myPc.playGame(new Game("The Sims 4"))));
         }
         
         [Test]
@@ -51,6 +52,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 
 
             Computer myPc = new Computer(myPsu);
+            myPc.installedGames = preInstalled;
 
             Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));
