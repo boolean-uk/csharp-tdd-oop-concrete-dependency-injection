@@ -45,9 +45,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void canPreinstallGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            List<Game> preInstalled = new List<Game>();
-            preInstalled.Add(new Game("Dwarf Fortress"));
-            preInstalled.Add(new Game("Baldur's Gate"));
+            myPsu.preInstalled.Add(new Game("Dwarf Fortress"));
+            myPsu.preInstalled.Add(new Game("Baldur's Gate"));
 
 
             Computer myPc = new Computer(myPsu);

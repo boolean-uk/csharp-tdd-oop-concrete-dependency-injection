@@ -8,7 +8,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class PowerSupply {
         public bool isOn = false;
-
+        public List<Game> preInstalled = new List<Game>();
         public void turnOn() {
             this.isOn = true;
         }
