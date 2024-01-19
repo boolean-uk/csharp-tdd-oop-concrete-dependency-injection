@@ -8,7 +8,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Game 
     {
-        public string name;
+        public string name { get; set; }
 
         public Game(string name) 
         {
