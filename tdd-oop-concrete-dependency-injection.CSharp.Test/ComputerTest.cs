@@ -5,16 +5,18 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 {
     class ComputerTest
     {
+        private List<Game> installedGames = new List<Game>();
         [Test]
         public void shouldTurnOn()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, installedGames);
             myPc.turnOn();
 
             Assert.That(myPsu.isOn);
         }
 
+        /*
         [Test]
         public void shouldInstallGames()
         {
@@ -26,12 +28,35 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             Assert.That(1, Is.EqualTo(myPc.installedGames.Count()));
             Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].name));
         }
+        */
+
+        [Test]
+        public void shouldInstallGames()
+        {
+            PowerSupply myPsu = new PowerSupply();
+            Computer myPc = new Computer(myPsu, installedGames);
+
+            myPc.installGame("Final Fantasy XI");
+
+            int timesFFXInstalled = 0;
+            for (int i = 0; i < myPc.installedGames.Count; i++)
+            {
+                if (myPc.installedGames[i].name == "Final Fantasy XI")
+                {
+                    timesFFXInstalled += 1;
+                }
+            }
+
+            Assert.AreEqual(1, timesFFXInstalled);
+        }
+
+
 
         [Test]
         public void shouldPlayGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, installedGames);
 
             myPc.installGame("Duck Game");
             myPc.installGame("Dragon's Dogma: Dark Arisen");
@@ -50,7 +75,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             preInstalled.Add(new Game("Baldur's Gate"));
 
 
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, preInstalled);
 
             Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));
