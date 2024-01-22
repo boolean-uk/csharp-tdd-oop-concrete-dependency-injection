@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class PowerSupply {
-        public bool isOn = false;
+        public bool isOn {get;set;}
 
         public void turnOn() {
             this.isOn = true;
