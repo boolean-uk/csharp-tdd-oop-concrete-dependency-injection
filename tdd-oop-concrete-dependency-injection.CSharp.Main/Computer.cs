@@ -33,9 +33,9 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             installedGames.Add(game);
         }
 
-        public string playGame(string name) {
+        public string playGame(Game game) {
             foreach (Game g in this.installedGames) {
-                if (g.name.Equals(name)) {
+                if (g.name.Equals(game.name)) {
                     return g.start();
                 }
             }
