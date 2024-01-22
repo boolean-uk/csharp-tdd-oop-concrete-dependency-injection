@@ -6,29 +6,42 @@ using System.Threading.Tasks;
 
 namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
-    public class Computer 
+    public class Computer
     {
         public List<Game> installedGames = new List<Game>();
-        
+
         public PowerSupply powerSupply;
 
-        public Computer(PowerSupply powerSupply) {
+        public Computer(PowerSupply powerSupply)
+        {
             this.powerSupply = powerSupply;
         }
 
-        public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+        public Computer(PowerSupply powerSupply, List<Game> preInstalled)
+        {
+            this.powerSupply = powerSupply;
+            foreach (Game game in preInstalled)
+            {
+                installedGames.Add(game);
+            }
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
-            this.installedGames.Add(game);
+        public void turnOn()
+        {
+            powerSupply.turnOn();
         }
 
-        public String playGame(string name) {
-            foreach (Game g in this.installedGames) {
-                if (g.name.Equals(name)) {
+        public void installGame(Game game)
+        {
+            installedGames.Add(game);
+        }
+
+        public string playGame(Game game)
+        {
+            foreach (Game g in this.installedGames)
+            {
+                if (g.name.Equals(game.name))
+                {
                     return g.start();
                 }
             }
