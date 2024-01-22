@@ -21,7 +21,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
 
-            myPc.installGame("Final Fantasy XI");
+            myPc.installGame(new Game("Final Fantasy XI"));
 
             Assert.That(1, Is.EqualTo(myPc.installedGames.Count()));
             Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].name));
