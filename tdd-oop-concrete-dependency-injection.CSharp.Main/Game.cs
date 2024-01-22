@@ -14,7 +14,6 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 
 
         public Game(string name) {
-            //This has to be done, else the Core exercise is not doable. "Your task is to refactor the Computer class to make the tests pass." 
             Name = name;
         }
 

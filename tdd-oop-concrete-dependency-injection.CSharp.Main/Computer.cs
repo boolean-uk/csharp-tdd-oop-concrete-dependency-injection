@@ -15,17 +15,21 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         public List<Game> installedGames { get => _installedGames; set => _installedGames = value; }
         public PowerSupply powerSupply { get => _powerSupply; set => _powerSupply = value; }
 
-        public Computer(PowerSupply psu) {
+        public Computer(PowerSupply psu, List<Game>? preInstalled = null) {
             powerSupply = psu;
+            //I interpret the "canPreInstallGames" to represent a prebuilt PC that comes with some games already installed
+            if(preInstalled != null)
+            {
+                installedGames = preInstalled;
+            }
+
         }
 
         public void turnOn() {
             powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
-            game.Name = name;
+        public void installGame(Game game) {
             installedGames.Add(game);
         }
 

@@ -20,8 +20,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
-
-            myPc.installGame("Final Fantasy XI");
+            Game ff = new Game("Final Fantasy XI");
+            myPc.installGame(ff);
 
             Assert.That(1, Is.EqualTo(myPc.installedGames.Count()));
             Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].Name));
@@ -32,13 +32,15 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game duckGame = new Game("Duck Game");
+            Game dragonsDogma = new Game("Dragon's Dogma: Dark Arisen");
 
-            myPc.installGame("Duck Game");
-            myPc.installGame("Dragon's Dogma: Dark Arisen");
+            myPc.installGame(duckGame);
+            myPc.installGame(dragonsDogma);
 
             Assert.That("Playing Duck Game", Is.EqualTo(myPc.playGame("Duck Game")));
             Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame("Dragon's Dogma: Dark Arisen")));
-            Assert.That("Game not installed", Is.EqualTo(myPc.playGame("Morrowind")));
+            Assert.That("Game not installed", Is.EqualTo(myPc.playGame("Morrowind"))); //An unforgivable crime. All PC's should have Morrowind installed!
         }
         
         [Test]
@@ -46,17 +48,22 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             List<Game> preInstalled = new List<Game>();
-            preInstalled.Add(new Game("Dwarf Fortress"));
-            preInstalled.Add(new Game("Baldur's Gate"));
+            Game dorfFortress = new Game("Dwarf Fortress");
+            Game baldursGate = new Game("Baldur's Gate");
 
-            //This has to be done, else the Core exercise is not doable. "Your task is to refactor the Computer class to make the tests pass." <-
-            Computer myPc = new Computer(myPsu);
-            myPc.installedGames = preInstalled;
+            preInstalled.Add(dorfFortress);
+            preInstalled.Add(baldursGate);
 
+            Computer myPc = new Computer(myPsu, preInstalled);
 
-            Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
+            //Checking that the preInstalled list is passed in correctly and will install games regularly afterwards.
+            Game europaU = new Game("Europa Universalis IV");
+            myPc.installGame(europaU);
+
+            Assert.That(3, Is.EqualTo(myPc.installedGames.Count));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].Name));
             Assert.That("Baldur's Gate", Is.EqualTo(myPc.installedGames[1].Name));
+            Assert.That("Europa Universalis IV", Is.EqualTo(myPc.installedGames[2].Name));
         }
     }
 }
