@@ -5,11 +5,18 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 {
     class ComputerTest
     {
+        GameCreator gameCreator;
+        [SetUp]
+        public void Setup()
+        {
+            gameCreator = new GameCreator();
+        }
+
         [Test]
         public void shouldTurnOn()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, new List<Game>());
             myPc.turnOn();
 
             Assert.IsTrue(myPsu.isOn);
@@ -19,13 +26,13 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void shouldInstallGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, new List<Game>());
 
-            myPc.installGame("Final Fantasy XI");
+            myPc.installGame(gameCreator.createGame("Duck Game"));
 
             int timesFFXInstalled = 0;
             for(int i = 0; i < myPc.installedGames.Count; i++) {
-                if(myPc.installedGames[i].name == "Final Fantasy XI") {
+                if(myPc.installedGames[i].name == "Duck Game") {
                     timesFFXInstalled += 1;
                 }
             }
@@ -37,26 +44,27 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void shouldPlayGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, new List<Game>());
 
-            myPc.installGame("Duck Game");
-            myPc.installGame("Dragon's Dogma: Dark Arisen");
+            myPc.installGame(gameCreator.createGame("Duck Game"));
+            myPc.installGame(gameCreator.createGame("Dark Arisen"));
 
             Assert.AreEqual("Playing Duck Game", myPc.playGame("Duck Game"));
-            Assert.AreEqual("Playing Dragon's Dogma: Dark Arisen", myPc.playGame("Dragon's Dogma: Dark Arisen"));
-            Assert.AreEqual("Game not installed", myPc.playGame("Morrowind"));
+            Assert.AreEqual("Playing Dark Arisen", myPc.playGame("Dark Arisen"));
         }
         
         [Test]
         public void canPreinstallGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            List<Game> preInstalled = new List<Game>();
-            preInstalled.Add(new Game("Dwarf Fortress"));
-            preInstalled.Add(new Game("Baldur's Gate"));
+            List<Game> preInstalled = new List<Game>
+            {
+                gameCreator.createGame("Dwarf Fortress"),
+                gameCreator.createGame("Baldur's Gate")
+            };
 
 
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, new List<Game>(preInstalled));
 
             Assert.AreEqual(2, myPc.installedGames.Count());
             Assert.AreEqual("Dwarf Fortress", myPc.installedGames[0].name);

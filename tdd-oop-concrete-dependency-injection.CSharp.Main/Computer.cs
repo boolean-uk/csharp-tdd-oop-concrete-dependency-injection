@@ -8,24 +8,20 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Computer 
     {        
+        public PowerSupply powerSupply;
         public List<Game> installedGames = new List<Game>();
 
-
-        public PowerSupply powerSupply;
-        public Game game;
-
-        public Computer(PowerSupply powerSupply) {
+        public Computer(PowerSupply powerSupply, List<Game> InstalledGames) {
             this.powerSupply = powerSupply;
-            this.installedGames = Game.InstalledGames;            
+            this.installedGames = InstalledGames;   
         }
 
         public void turnOn() {
             powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            game = new Game(name);
-            //installedGames.Add(game);
+        public void installGame(Game name) {
+            installedGames.Add(name);
         }
 
         public String playGame(string name) {
