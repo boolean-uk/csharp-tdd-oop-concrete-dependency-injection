@@ -20,8 +20,9 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         {
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
+            Game game = new Game("Final Fantasy XI");
 
-            myPc.installGame("Final Fantasy XI");
+            myPc.installGame(game);
 
             Assert.That(1, Is.EqualTo(myPc.installedGames.Count()));
             Assert.That("Final Fantasy XI", Is.EqualTo(myPc.installedGames[0].name));
@@ -33,8 +34,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             PowerSupply myPsu = new PowerSupply();
             Computer myPc = new Computer(myPsu);
 
-            myPc.installGame("Duck Game");
-            myPc.installGame("Dragon's Dogma: Dark Arisen");
+            myPc.installGame(new Game("Duck Game"));
+            myPc.installGame(new Game("Dragon's Dogma: Dark Arisen"));
 
             Assert.That("Playing Duck Game", Is.EqualTo(myPc.playGame("Duck Game")));
             Assert.That("Playing Dragon's Dogma: Dark Arisen", Is.EqualTo(myPc.playGame("Dragon's Dogma: Dark Arisen")));
@@ -51,6 +52,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
 
 
             Computer myPc = new Computer(myPsu);
+            myPc.PreinstallGames(preInstalled);
 
             Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));

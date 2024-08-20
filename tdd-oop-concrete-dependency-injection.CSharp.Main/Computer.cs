@@ -17,12 +17,10 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
         }
 
         public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+            powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
+        public void installGame(Game game) {
             this.installedGames.Add(game);
         }
 
@@ -34,6 +32,14 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             }
 
             return "Game not installed";
+        }
+
+        public void PreinstallGames(List<Game> preInstalled)
+        {
+            foreach (Game game in preInstalled)
+            {
+                installedGames.Add(game);
+            }
         }
     }
 }
