@@ -9,7 +9,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void shouldTurnOn()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            List<Game> preInstalled = new List<Game>();
+            Computer myPc = new Computer(myPsu, preInstalled);
             myPc.turnOn();
 
             Assert.That(myPsu.isOn);
@@ -19,7 +20,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void shouldInstallGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            List<Game> preInstalled = new List<Game>();
+            Computer myPc = new Computer(myPsu, preInstalled);
 
             myPc.installGame("Final Fantasy XI");
 
@@ -31,7 +33,8 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void shouldPlayGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            Computer myPc = new Computer(myPsu);
+            List<Game> preInstalled = new List<Game>();
+            Computer myPc = new Computer(myPsu, preInstalled);
 
             myPc.installGame("Duck Game");
             myPc.installGame("Dragon's Dogma: Dark Arisen");
@@ -50,7 +53,7 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
             preInstalled.Add(new Game("Baldur's Gate"));
 
 
-            Computer myPc = new Computer(myPsu);
+            Computer myPc = new Computer(myPsu, preInstalled);
 
             Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
             Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));

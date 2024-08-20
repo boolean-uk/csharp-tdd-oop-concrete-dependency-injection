@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,17 +9,17 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Computer 
     {
-        public List<Game> installedGames = new List<Game>();
+        public List<Game> installedGames;
         
         public PowerSupply powerSupply;
 
-        public Computer(PowerSupply powerSupply) {
+        public Computer(PowerSupply powerSupply, List<Game> preInstalled) {
             this.powerSupply = powerSupply;
+            installedGames = preInstalled;
         }
 
         public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+            powerSupply.turnOn();
         }
 
         public void installGame(string name) {
