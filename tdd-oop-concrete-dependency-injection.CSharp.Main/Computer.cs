@@ -8,32 +8,37 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
 {
     public class Computer 
     {
-        public List<Game> installedGames = new List<Game>();
-        
-        public PowerSupply powerSupply;
+        private readonly List<Game> _installedGames = new List<Game>();        
+        private PowerSupply _powerSupply;
 
-        public Computer(PowerSupply powerSupply) {
-            this.powerSupply = powerSupply;
+        public Computer(PowerSupply powerSupply, List<Game>? preInstalledGames = null)
+        {
+            _powerSupply = powerSupply;
+            if (preInstalledGames != null)
+            {
+                _installedGames.AddRange(preInstalledGames);
+            }
         }
 
         public void turnOn() {
-            PowerSupply psu = new PowerSupply();
-            psu.turnOn();
+            _powerSupply.turnOn();
         }
 
-        public void installGame(string name) {
-            Game game = new Game(name);
-            this.installedGames.Add(game);
+        public void installGame(Game game) {
+            _installedGames.Add(game);
         }
 
         public String playGame(string name) {
-            foreach (Game g in this.installedGames) {
-                if (g.name.Equals(name)) {
+            foreach (Game g in _installedGames) {
+                if (g.Name.Equals(name)) {
                     return g.start();
                 }
             }
 
             return "Game not installed";
         }
+
+        public List<Game> InstalledGames => _installedGames;
+
     }
 }
